@@ -1,0 +1,67 @@
+import tkinter as tk
+from tkinter import simpledialog
+
+# Función para solicitar los datos de las tres mascotas
+def leer_datos_mascotas():
+    # Crear la ventana principal
+    root = tk.Tk()
+    root.withdraw()  # Ocultar la ventana principal
+
+    # Crear una nueva ventana para la entrada de datos
+    ventana_mascotas = tk.Toplevel(root)
+    ventana_mascotas.title("Datos de Mascotas")
+
+    # Configurar el tamaño de la ventana
+    ventana_mascotas.geometry("400x300")
+
+    # Etiquetas y campos de entrada para las tres mascotas
+    etiquetas = []
+    entradas_nombre = []
+    entradas_edad = []
+    entradas_raza = []
+
+    for i in range(3):
+        # Etiqueta para la mascota
+        etiqueta_mascota = tk.Label(ventana_mascotas, text=f"Mascota {i+1}", font=("Arial", 14))
+        etiqueta_mascota.pack(pady=5)
+        etiquetas.append(etiqueta_mascota)
+
+        # Entrada para el nombre
+        etiqueta_nombre = tk.Label(ventana_mascotas, text="Nombre:", font=("Arial", 12))
+        etiqueta_nombre.pack(pady=2)
+        entrada_nombre = tk.Entry(ventana_mascotas, font=("Arial", 12))
+        entrada_nombre.pack(pady=2)
+        entradas_nombre.append(entrada_nombre)
+
+        # Entrada para la edad
+        etiqueta_edad = tk.Label(ventana_mascotas, text="Edad:", font=("Arial", 12))
+        etiqueta_edad.pack(pady=2)
+        entrada_edad = tk.Entry(ventana_mascotas, font=("Arial", 12))
+        entrada_edad.pack(pady=2)
+        entradas_edad.append(entrada_edad)
+
+        # Entrada para la raza
+        etiqueta_raza = tk.Label(ventana_mascotas, text="Raza:", font=("Arial", 12))
+        etiqueta_raza.pack(pady=2)
+        entrada_raza = tk.Entry(ventana_mascotas, font=("Arial", 12))
+        entrada_raza.pack(pady=2)
+        entradas_raza.append(entrada_raza)
+
+    # Función para capturar los datos y cerrar la ventana
+    def confirmar():
+        for i in range(3):
+            nombre = entradas_nombre[i].get()
+            edad = entradas_edad[i].get()
+            raza = entradas_raza[i].get()
+            print(f"Mascota {i+1}:")
+            print(f"Nombre: {nombre}, Edad: {edad}, Raza: {raza}\n")
+        ventana_mascotas.destroy()  # Cerrar la ventana después de leer los datos
+
+    # Botón para confirmar la entrada de datos
+    boton_confirmar = tk.Button(ventana_mascotas, text="Confirmar", command=confirmar, font=("Arial", 12))
+    boton_confirmar.pack(pady=20)
+
+    ventana_mascotas.mainloop()
+
+# Ejecutar la función
+leer_datos_mascotas()
