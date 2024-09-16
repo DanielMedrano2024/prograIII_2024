@@ -1,0 +1,38 @@
+import tkinter as tk
+from tkinter import simpledialog
+
+# Función para solicitar y mostrar la clave secreta
+def leer_clave_secreta():
+    # Crear la ventana principal
+    root = tk.Tk()
+    root.withdraw()  # Ocultar la ventana principal
+
+    # Crear una nueva ventana para la entrada de la clave secreta
+    ventana_clave = tk.Toplevel(root)
+    ventana_clave.title("Clave Secreta")
+
+    # Configurar el tamaño de la ventana
+    ventana_clave.geometry("300x150")
+
+    # Crear una etiqueta que indique que el usuario debe ingresar la clave
+    etiqueta = tk.Label(ventana_clave, text="Ingrese su clave secreta:", font=("Arial", 14))
+    etiqueta.pack(pady=10)
+
+    # Crear un campo de entrada para la clave, ocultando los caracteres con '*'
+    entrada_clave = tk.Entry(ventana_clave, show="*", font=("Arial", 14))
+    entrada_clave.pack(pady=10)
+
+    # Función para capturar la clave y cerrar la ventana
+    def confirmar():
+        clave = entrada_clave.get()
+        print(f"Clave ingresada: {clave}")  # Puedes hacer lo que quieras con la clave aquí
+        ventana_clave.destroy()  # Cerrar la ventana después de leer la clave
+
+    # Botón para confirmar la entrada de la clave
+    boton = tk.Button(ventana_clave, text="Confirmar", command=confirmar, font=("Arial", 12))
+    boton.pack(pady=10)
+
+    ventana_clave.mainloop()
+
+# Ejecutar la función
+leer_clave_secreta()
