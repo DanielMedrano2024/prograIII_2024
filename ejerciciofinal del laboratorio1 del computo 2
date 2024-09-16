@@ -1,0 +1,75 @@
+import sys
+from PyQt5.QtWidgets import QApplication, QWidget, QVBoxLayout, QRadioButton, QComboBox, QPushButton, QLabel
+
+class MyApp(QWidget):
+    def __init__(self):
+        super().__init__()
+
+        # Configuración inicial de la ventana
+        self.setWindowTitle('PyQt RadioBox y ComboBox')
+        self.setGeometry(100, 100, 300, 200)
+
+        # Crear un layout vertical
+        layout = QVBoxLayout()
+
+        # Crear Radio Buttons
+        self.radio1 = QRadioButton('Opción 1')
+        self.radio2 = QRadioButton('Opción 2')
+        self.radio3 = QRadioButton('Opción 3')
+
+        # Añadir los Radio Buttons al layout
+        layout.addWidget(self.radio1)
+        layout.addWidget(self.radio2)
+        layout.addWidget(self.radio3)
+
+        # Crear Combo Box
+        self.combo = QComboBox()
+        self.combo.addItems(['Selección A', 'Selección B', 'Selección C'])
+
+        # Añadir el Combo Box al layout
+        layout.addWidget(self.combo)
+
+        # Crear botón
+        self.button = QPushButton('Mostrar Selección')
+        self.button.clicked.connect(self.show_selection)
+
+        # Añadir el botón al layout
+        layout.addWidget(self.button)
+
+        # Crear etiqueta para mostrar la selección
+        self.result_label = QLabel('')
+        layout.addWidget(self.result_label)
+
+        # Configurar el layout en la ventana
+        self.setLayout(layout)
+
+    def show_selection(self):
+        # Obtener el texto seleccionado en el ComboBox
+        combo_text = self.combo.currentText()
+
+        # Obtener el texto seleccionado en los RadioButtons
+        radio_text = ''
+        if self.radio1.isChecked():
+            radio_text = 'Opción 1'
+        elif self.radio2.isChecked():
+            radio_text = 'Opción 2'
+        elif self.radio3.isChecked():
+            radio_text = 'Opción 3'
+
+        # Actualizar el texto de la etiqueta con las selecciones
+        self.result_label.setText(f'Selección del ComboBox: {combo_text}\nSelección del RadioButton: {radio_text}')
+
+if __name__ == '__main__':
+    app = QApplication(sys.argv)
+    window = MyApp()
+    window.show()
+    sys.exit(app.exec_())
+
+#Problema que Resuelve Este programa es útil para aplicaciones donde se necesita recopilar información 
+#del usuario a través de opciones predefinidas. Por ejemplo, podría usarse en formularios de configuración 
+#donde el usuario selecciona su preferencia de una lista desplegable y opciones adicionales de una lista de
+#opciones mutuamente excluyentes. ¿Qué Hace el Programa? Muestra una Ventana de Interfaz Gráfica:Al iniciar 
+# el programa, se abre una ventana con los widgets mencionados. Permite Seleccionar Opciones:El usuario puede
+# seleccionar una opción en el combobox y elegir un botón de radio.Muestra la Selección Actual:Cuando el 
+# usuario hace clic en el botón, el programa muestra la opción seleccionada en el combobox y el botón de 
+# radio en la etiqueta.
