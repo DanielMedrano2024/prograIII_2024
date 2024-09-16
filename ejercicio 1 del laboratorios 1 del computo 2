@@ -1,0 +1,32 @@
+import tkinter as tk
+from tkinter import simpledialog
+
+# Función para obtener la información y mostrarla en la ventana
+def mostrar_ventana():
+    # Crear la ventana principal
+    root = tk.Tk()
+    root.withdraw()  # Ocultar la ventana principal
+
+    # Solicitar el nombre y la edad
+    nombre = simpledialog.askstring("Nombre", "Ingrese su nombre completo:")
+    edad = simpledialog.askinteger("Edad", "Ingrese su edad:")
+
+    # Crear una nueva ventana para mostrar los datos
+    ventana = tk.Toplevel(root)
+    ventana.title("Datos personales")
+
+    # Configurar el tamaño de la ventana
+    ventana.geometry("300x200")
+
+    # Crear etiquetas para mostrar el nombre y la edad
+    etiqueta_nombre = tk.Label(ventana, text=f"Nombre: {nombre}", font=("Arial", 14))
+    etiqueta_edad = tk.Label(ventana, text=f"Edad: {edad}", font=("Arial", 14))
+
+    # Centrar las etiquetas
+    etiqueta_nombre.pack(pady=20)
+    etiqueta_edad.pack(pady=20)
+
+    ventana.mainloop()
+
+# Ejecutar la función
+mostrar_ventana()
