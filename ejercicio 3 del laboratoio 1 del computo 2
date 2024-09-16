@@ -1,0 +1,48 @@
+import tkinter as tk
+from tkinter import simpledialog
+
+# Función para solicitar el número de cédula y nombre completo
+def leer_cedula_y_nombre():
+    # Crear la ventana principal
+    root = tk.Tk()
+    root.withdraw()  # Ocultar la ventana principal
+
+    # Crear una nueva ventana para la entrada de datos
+    ventana_datos = tk.Toplevel(root)
+    ventana_datos.title("Cédula y Nombre Completo")
+
+    # Configurar el tamaño de la ventana
+    ventana_datos.geometry("350x200")
+
+    # Etiqueta para el número de cédula
+    etiqueta_cedula = tk.Label(ventana_datos, text="Ingrese su número de cédula:", font=("Arial", 12))
+    etiqueta_cedula.pack(pady=10)
+
+    # Entrada para el número de cédula
+    entrada_cedula = tk.Entry(ventana_datos, font=("Arial", 12))
+    entrada_cedula.pack(pady=5)
+
+    # Etiqueta para el nombre completo
+    etiqueta_nombre = tk.Label(ventana_datos, text="Ingrese su nombre completo:", font=("Arial", 12))
+    etiqueta_nombre.pack(pady=10)
+
+    # Entrada para el nombre completo
+    entrada_nombre = tk.Entry(ventana_datos, font=("Arial", 12))
+    entrada_nombre.pack(pady=5)
+
+    # Función para capturar los datos y cerrar la ventana
+    def confirmar():
+        cedula = entrada_cedula.get()
+        nombre = entrada_nombre.get()
+        print(f"Número de cédula: {cedula}")
+        print(f"Nombre completo: {nombre}")
+        ventana_datos.destroy()  # Cerrar la ventana después de leer los datos
+
+    # Botón para confirmar la entrada de datos
+    boton_confirmar = tk.Button(ventana_datos, text="Confirmar", command=confirmar, font=("Arial", 12))
+    boton_confirmar.pack(pady=20)
+
+    ventana_datos.mainloop()
+
+# Ejecutar la función
+leer_cedula_y_nombre()
