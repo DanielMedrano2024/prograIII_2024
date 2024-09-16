@@ -1,0 +1,73 @@
+import tkinter as tk
+from tkinter import messagebox
+
+# Función para solicitar los 10 datos de una persona
+def leer_datos_persona():
+    # Crear la ventana principal
+    root = tk.Tk()
+    root.withdraw()  # Ocultar la ventana principal
+
+    # Crear una nueva ventana para la entrada de datos
+    ventana_datos = tk.Toplevel(root)
+    ventana_datos.title("Datos de la Persona")
+
+    # Configurar el tamaño de la ventana
+    ventana_datos.geometry("400x500")
+
+    # Etiquetas y campos de entrada para los 10 datos
+    etiquetas = []
+    entradas = []
+    datos = [
+        "Nombre Completo", "Edad", "Género", "Número de Teléfono",
+        "Correo Electrónico", "Dirección", "Ocupación", "Estado Civil",
+        "Nacionalidad", "Hobbies"
+    ]
+
+    for i in range(10):
+        # Crear la etiqueta para cada dato
+        etiqueta_dato = tk.Label(ventana_datos, text=f"{datos[i]}:", font=("Arial", 12))
+        etiqueta_dato.pack(pady=5)
+        etiquetas.append(etiqueta_dato)
+
+        # Crear el campo de entrada para cada dato
+        entrada_dato = tk.Entry(ventana_datos, font=("Arial", 12))
+        entrada_dato.pack(pady=5)
+        entradas.append(entrada_dato)
+
+    # Función para capturar los datos y cerrar la ventana
+    def confirmar():
+        persona = {}
+        for i in range(10):
+            dato = entradas[i].get()
+            persona[datos[i]] = dato
+        # Imprimir los datos ingresados en consola
+        for key, value in persona.items():
+            print(f"{key}: {value}")
+        messagebox.showinfo("Datos Confirmados", "Los datos han sido confirmados.")
+        
+    # Función para guardar los datos en un archivo de texto
+    def guardar():
+        persona = {}
+        for i in range(10):
+            dato = entradas[i].get()
+            persona[datos[i]] = dato
+
+        # Guardar los datos en un archivo de texto
+        with open("datos_persona.txt", "w") as archivo:
+            for key, value in persona.items():
+                archivo.write(f"{key}: {value}\n")
+        
+        messagebox.showinfo("Guardado", "Los datos han sido guardados en 'datos_persona.txt'.")
+    
+    # Botón para confirmar la entrada de datos
+    boton_confirmar = tk.Button(ventana_datos, text="Confirmar", command=confirmar, font=("Arial", 12))
+    boton_confirmar.pack(pady=10)
+
+    # Botón para guardar los datos en un archivo de texto
+    boton_guardar = tk.Button(ventana_datos, text="Guardar", command=guardar, font=("Arial", 12))
+    boton_guardar.pack(pady=10)
+
+    ventana_datos.mainloop()
+
+# Ejecutar la función
+leer_datos_persona()
